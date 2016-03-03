@@ -26,7 +26,7 @@ public class CadastroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/cadastro")
+	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
 	public ModelAndView cadastro(ModelAndView model) {
 		Pessoa pessoa = new Pessoa();
 		model.addObject("pessoa", pessoa);
