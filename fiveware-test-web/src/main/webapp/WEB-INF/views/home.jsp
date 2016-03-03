@@ -10,7 +10,7 @@
 	<div align="center">
 		<h1>Cadastro de Pessoas</h1>
 		<h3>
-			<a href="/cadastro">Inserir Pessoa...</a>
+			<a href="/fiveware-test-web/cadastro">Inserir Pessoa...</a>
 		</h3>
 		<table border="1">
 			<th>#</th>

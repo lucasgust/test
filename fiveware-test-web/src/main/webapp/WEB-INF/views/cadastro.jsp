@@ -5,12 +5,47 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('#insertForm').submit(
+		function(event) {
+			var nome = $('input[name=nome]').val();
+			var sexo = $('input[name=sexo]').val();
+			var estadoCivil = $('select[name=estadoCivil] option:selected').text();
+			var empregado = $('input[name=empregado]').val();
+
+			var data = 'nome='
+					+ encodeURIComponent(nome)
+					+ '&sexo='
+					+ encodeURIComponent(sexo)
+					+ '&estadoCivil='
+					+ encodeURIComponent(estadoCivil)
+					+ '&empregado='
+					+ encodeURIComponent(empregado);
+
+			$.ajax({
+				url : $("#insertForm").attr("action"),
+				data : data,
+				type : "POST",
+				success : function(response) {
+					console.log(response);
+					//window.location('/home');
+				},
+				error : function(xhr, status, error) {
+					console.log(xhr.responseText);
+				}
+			});
+		}
+	);
+});
+</script>
 <title>Nova Pessoa</title>
 </head>
 <body>
 	<div align="center">
 		<h1>Nova Pessoa</h1>
-		<form:form action="insertPessoa" method="post" modelAttribute="pessoa">
+		<form:form id="insertForm" action="insertPessoa" method="post" modelAttribute="pessoa">
 			<table>
 				<tr>
 					<td>Nome</td>
@@ -18,15 +53,24 @@
 				</tr>
 				<tr>
 					<td>Sexo</td>
-					<td><form:input path="sexo" /></td>
+					<td>
+						<form:radiobutton path="sexo" value="M" />Masculino
+						<form:radiobutton path="sexo" value="F" />Feminino
+					</td>
 				</tr>
 				<tr>
 					<td>Estado Civil</td>
-					<td><form:input path="estadoCivil" /></td>
+					<td>
+						<form:select path="estadoCivil">
+						    <form:option value="SOLTEIRO" />
+						    <form:option value="CASADO" />
+						    <form:option value="VIÚVO" />
+						</form:select>
+					</td>
 				</tr>
 				<tr>
 					<td>Empregado?</td>
-					<td><form:input path="empregado" /></td>
+					<td><form:checkbox path="empregado" value="SIM"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"

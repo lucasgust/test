@@ -54,5 +54,6 @@
 	<modules>
 		<module>fiveware-test-service</module>
     <module>fiveware-test-web</module>
-  </modules>
+    <module>fiveware-test-model</module>
+	</modules>
 </project>

@@ -42,7 +42,11 @@ public class CadastroDAOImpl implements CadastroDAO {
 	@Override
 	public void insert(Pessoa pessoa) {
         String sql = " INSERT INTO PESSOA(NOME, SEXO, ESTADO_CIVIL, EMPREGADO) VALUES (?, ?, ?, ?) ";
-        jdbcTemplate.update(sql, pessoa.getNome(), pessoa.getSexo(), pessoa.getEstadoCivil(), pessoa.getEmpregado());
+        jdbcTemplate.update(sql, 
+        		pessoa.getNome(), 
+        		pessoa.getSexo(), 
+        		pessoa.getEstadoCivil(), 
+        		pessoa.getEmpregado() == null || pessoa.getEmpregado().trim().equals("") ? "NAO" : pessoa.getEmpregado());
 	}
 
 }

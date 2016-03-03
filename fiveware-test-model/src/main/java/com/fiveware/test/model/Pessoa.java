@@ -1,7 +1,7 @@
 package com.fiveware.test.model;
 
 public class Pessoa {
-	
+
 	private String nome;
 	private String sexo;
 	private String estadoCivil;
@@ -49,5 +49,4 @@ public class Pessoa {
 	public void setEmpregado(String empregado) {
 		this.empregado = empregado;
 	}
-	
 }
