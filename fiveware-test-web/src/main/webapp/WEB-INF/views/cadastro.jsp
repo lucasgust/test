@@ -10,6 +10,7 @@
 $(document).ready(function() {
 	$('#insertForm').submit(
 		function(event) {
+			event.preventDefault();
 			var nome = $('input[name=nome]').val();
 			var sexo = $('input[name=sexo]').val();
 			var estadoCivil = $('select[name=estadoCivil] option:selected').text();
@@ -30,7 +31,7 @@ $(document).ready(function() {
 				type : "POST",
 				success : function(response) {
 					console.log(response);
-					//window.location('/home');
+					window.location = "http://localhost:8080/fiveware-test-web/";
 				},
 				error : function(xhr, status, error) {
 					console.log(xhr.responseText);
@@ -73,8 +74,7 @@ $(document).ready(function() {
 					<td><form:checkbox path="empregado" value="SIM"/></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Inserir"></td>
+					<td colspan="2" align="center"><input type="submit"	value="Inserir"></td>
 				</tr>
 			</table>
 		</form:form>
