@@ -2,13 +2,13 @@ package com.fiveware.test.servlet;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.fiveware.test.config.SpringWebConfig;
+import com.fiveware.test.config.WebConfig;
 
 public class CadastroServlet extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { SpringWebConfig.class };
+		return new Class[] { WebConfig.class };
 	}
 
 	@Override

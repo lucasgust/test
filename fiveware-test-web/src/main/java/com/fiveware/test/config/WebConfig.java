@@ -16,14 +16,14 @@ import com.fiveware.test.dao.CadastroDAO;
 import com.fiveware.test.dao.CadastroDAOImpl;
 
 @Configuration
-@ComponentScan(basePackages="com.fiveware.test")
+@ComponentScan(basePackages = {"com.fiveware.test"})
 @EnableWebMvc
-public class SpringWebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
-	public ViewResolver getViewResolver(){
+	public ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setPrefix("/WEB-INF/jsp/");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}

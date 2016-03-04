@@ -2,20 +2,31 @@ package com.fiveware.test.model;
 
 public class Pessoa {
 
+	private int id;
 	private String nome;
 	private String sexo;
 	private String estadoCivil;
 	private String empregado;
-	
+
 	public Pessoa() {
 	}
-	
-	public Pessoa(String nome, String sexo, String estadoCivil, String empregado) {
+
+	public Pessoa(int id, String nome, String sexo, String estadoCivil,
+			String empregado) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.sexo = sexo;
 		this.estadoCivil = estadoCivil;
 		this.empregado = empregado;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {

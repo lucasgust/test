@@ -28,6 +28,7 @@ public class CadastroDAOImpl implements CadastroDAO {
 			throws SQLException {
 				Pessoa pessoa = new Pessoa();
 				
+				pessoa.setId(rs.getInt("ID"));
 				pessoa.setNome(rs.getString("NOME"));
 				pessoa.setSexo(rs.getString("SEXO"));
 				pessoa.setEstadoCivil(rs.getString("ESTADO_CIVIL"));
