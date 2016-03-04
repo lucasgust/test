@@ -1,53 +1,40 @@
 package com.fiveware.test.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import com.fiveware.test.model.Pessoa;
 
 public class CadastroDAOImpl implements CadastroDAO {
 
-	private JdbcTemplate jdbcTemplate;
-	 
-    public CadastroDAOImpl(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+	EntityManagerFactory factory;
+
+    public CadastroDAOImpl() {
+        factory = Persistence.createEntityManagerFactory("test");
     }
     
 	@Override
 	public List<Pessoa> list() {
-		String sql = "SELECT * FROM PESSOA";
-		List<Pessoa> listPessoa = jdbcTemplate.query(sql, new RowMapper<Pessoa>() {
-			@Override
-			public Pessoa mapRow(ResultSet rs, int rowNum)
-			throws SQLException {
-				Pessoa pessoa = new Pessoa();
-				
-				pessoa.setId(rs.getInt("ID"));
-				pessoa.setNome(rs.getString("NOME"));
-				pessoa.setSexo(rs.getString("SEXO"));
-				pessoa.setEstadoCivil(rs.getString("ESTADO_CIVIL"));
-				pessoa.setEmpregado(rs.getString("EMPREGADO"));
-				return pessoa;
-			}
-		});
-
-		return listPessoa;
+		EntityManager em = factory.createEntityManager();
+		TypedQuery<Pessoa> query = em.createQuery("select p from Pessoa p", Pessoa.class);
+		List<Pessoa> pessoas = query.getResultList();
+        em.close();
+        return pessoas;
 	}
 	
 	@Override
 	public void insert(Pessoa pessoa) {
-        String sql = " INSERT INTO PESSOA(NOME, SEXO, ESTADO_CIVIL, EMPREGADO) VALUES (?, ?, ?, ?) ";
-        jdbcTemplate.update(sql, 
-        		pessoa.getNome(), 
-        		pessoa.getSexo(), 
-        		pessoa.getEstadoCivil(), 
-        		pessoa.getEmpregado() == null || pessoa.getEmpregado().trim().equals("") ? "NAO" : pessoa.getEmpregado());
+		EntityManager em = factory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(pessoa);
+        tx.commit();
+        em.close();
 	}
 
 }

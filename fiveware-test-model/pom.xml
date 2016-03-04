@@ -6,4 +6,13 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>fiveware-test-model</artifactId>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>4.3.0.Beta4</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
 </project>

@@ -1,11 +1,27 @@
 package com.fiveware.test.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "pessoa")
 public class Pessoa {
 
+	 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	 
 	private String nome;
+	
 	private String sexo;
+	
+	@Column(name = "estado_civil")
+	
 	private String estadoCivil;
+	
 	private String empregado;
 
 	public Pessoa() {
